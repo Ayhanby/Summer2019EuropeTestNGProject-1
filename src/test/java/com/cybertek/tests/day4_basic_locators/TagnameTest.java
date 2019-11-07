@@ -24,7 +24,7 @@ public class TagnameTest {
         signUpButton.click();
         //print the message using tagname locator
         WebElement messageElement = driver.findElement(By.tagName("h3"));
-        String message = messageElement.getText()
+        String message = messageElement.getText();
         System.out.println(message);
         //one shot
         System.out.println(driver.findElement(By.tagName("h3")).getText());
