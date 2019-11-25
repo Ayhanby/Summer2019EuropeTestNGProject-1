@@ -39,9 +39,9 @@ public class SelectClassTest {
 
         //1.locate the dropdown element with unique locator
 
-        WebElement dropdownElement = driver.findElement(By.id("state"));
+        //WebElement dropdownElement = driver.findElement(By.id("state"));
 
-        Select stateList = new Select(dropdownElement);
+        Select stateList = new Select(driver.findElement(By.id("state")));
 
         //verify that first option is "Select a State"
         String expectedOption="Select a State";
