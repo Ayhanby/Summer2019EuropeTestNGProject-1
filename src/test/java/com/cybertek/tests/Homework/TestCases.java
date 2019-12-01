@@ -133,13 +133,13 @@ public class TestCases {
         Assert.assertEquals(actualMessage.getText(), expectedMessage, "Verify that warning message is displayed:Thank you for signing up. Click the button below to return to the home page.");
         driver.get("https://www.tempmailaddress.com");
         Thread.sleep(3000);
-        driver.findElement(By.xpath("(//*[@class='col-xs-9 mobileFrom'])[1]")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[5]/div/table/tbody/tr[3]/td[1]")).click();
 
-        // WebElement actualMessage2 = driver.findElement(By.cssSelector("#predmet"));
-        // System.out.println(actualMessage2.getText());
-        //String expectedMessage2 = "Thanks for subscribing to practice.cybertekschool.com!";
+        WebElement actualMessage2 = driver.findElement(By.cssSelector("#predmet"));
+         System.out.println(actualMessage2.getText());
+        String expectedMessage2 = "Thanks for subscribing to practice.cybertekschool.com!";
 
-        //Assert.assertEquals(actualMessage2.getText(), expectedMessage2, "Verify that warning message is displayed:Thanks for subscribing to practice.cybertekschool.com!");
+        Assert.assertEquals(actualMessage2.getText(), expectedMessage2, "Verify that warning message is displayed:Thanks for subscribing to practice.cybertekschool.com!");
     }
 
     @Test
