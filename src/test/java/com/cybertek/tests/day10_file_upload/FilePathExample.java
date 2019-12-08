@@ -14,6 +14,7 @@ public class FilePathExample {
         String relativePath="\\src\\test\\resources\\testfile.txt";
         String filePath=projectPath+"/"+relativePath;
         System.out.println(filePath);
+        System.out.println(filePath);
 
     }
 
