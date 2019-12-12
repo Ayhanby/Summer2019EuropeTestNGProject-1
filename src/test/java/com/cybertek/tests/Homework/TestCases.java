@@ -4,6 +4,7 @@ import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -100,9 +101,12 @@ public class TestCases {
         dropdownElement.click();
         driver.findElement(By.xpath(" //*[@value='DE']")).click();
 
-        WebElement dropdownElement2 = driver.findElement(By.xpath(" //*[@name='job_title']"));
-        dropdownElement2.click();
-        driver.findElement(By.xpath("//*[text()='SDET']")).click();
+        Select select=new Select(driver.findElement(By.cssSelector("select[name='job_title']")));
+        select.selectByVisibleText("SDET");
+
+        //WebElement dropdownElement2 = driver.findElement(By.xpath(" //*[@name='job_title']"));
+       // dropdownElement2.click();
+       // driver.findElement(By.xpath("//*[text()='SDET']")).click();
         driver.findElement(By.cssSelector("#inlineCheckbox2")).click();
         driver.findElement(By.cssSelector("#wooden_spoon")).click();
 
