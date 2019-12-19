@@ -113,5 +113,30 @@ public class VyTrack_2 {
         checkbox.click();
         Assert.assertTrue(checkbox.isSelected(),"Verify that all calendar events were selected");
     }
+    @Test
+    public void TestCase_6() throws InterruptedException {
+        // 4.Select "Testers meeting"
+        // 5.Verify that following data is displayed:
+        for (int i = 1; i < 25; i++) {
+            WebElement Cell = driver.findElement(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr[" + i + "]/td[2]"));
+            System.out.println("Cell = " + Cell.getText());
+            if (Cell.getText().equals("Testers Meeting")) {
+                WebElement newCell = driver.findElement(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr[" + i + "]/td[2]"));
+                Thread.sleep(5000);
+                newCell.click();
+                break;
+            }
+        }
+        Thread.sleep(3000);
+        for (int i = 1; i < 10; i++) {
+            String xpath = "(//div[@class='control-group attribute-row'])[" + i + "]/div/div";
+            WebElement Value = driver.findElement(By.xpath(xpath));
+            if (Value.isDisplayed() == true) {
+                System.out.println(Value + " " + i + " value is displayed");
+            } else {
+                System.out.println(Value + " " + i + " value is NOT displayed");
+            }
+        }
+    }
 
 }
