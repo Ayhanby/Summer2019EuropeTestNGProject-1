@@ -30,7 +30,7 @@ public class ExtentDemoTest {
 
         // attach the html report to the report object
         report.attachReporter(htmlReporter);
-
+            //title in the report
         htmlReporter.config().setReportName("Vytrack smoke test");
         // set environment information
         report.setSystemInfo("Environment","QA");
