@@ -50,7 +50,7 @@ public class TestBase {
         driver = Driver.get();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         action = new Actions(driver);
-        wait = new WebDriverWait(driver,20);
+        wait = new WebDriverWait(driver,30);
         driver.get(ConfigurationReader.get("url"));
         driver.manage().window().maximize();
     }
