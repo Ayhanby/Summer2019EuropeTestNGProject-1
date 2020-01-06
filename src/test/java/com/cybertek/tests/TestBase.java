@@ -9,19 +9,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 public class TestBase {
     protected WebDriver driver;
     protected Actions action;
     protected WebDriverWait wait;
-    protected ExtentReports report;
-    protected ExtentHtmlReporter htmlReporter;
-    protected ExtentTest extentLogger;
+    protected static ExtentReports report;
+    protected static ExtentHtmlReporter htmlReporter;
+    protected static ExtentTest extentLogger;
+    protected String url;
     @BeforeTest
     public void setUpTest(){
         //initialize the class
@@ -38,7 +36,6 @@ public class TestBase {
         report.setSystemInfo("Environment","QA");
         report.setSystemInfo("Browser", ConfigurationReader.get("browser"));
         report.setSystemInfo("OS",System.getProperty("os.name"));
-        report.setSystemInfo("Tester","Harun Ekinci");
     }
     @AfterTest
     public void tearDownTest(){
@@ -46,12 +43,21 @@ public class TestBase {
         report.flush();
     }
     @BeforeMethod
-    public void setUpMethod(){
+    @Parameters("env")
+    public void setUpMethod(@Optional String env){
+        System.out.println("env = " + env);
+        //if env variable is null use default url
+        //if it is not null, get url based on env
+        if(env==null){
+            url=ConfigurationReader.get("url");
+        }else{
+            url=ConfigurationReader.get(env+"_url");
+        }
         driver = Driver.get();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         action = new Actions(driver);
-        wait = new WebDriverWait(driver,30);
-        driver.get(ConfigurationReader.get("url"));
+        wait = new WebDriverWait(driver,10);
+        driver.get(url);
         driver.manage().window().maximize();
     }
     //ITestResult class describes the result of a test in TestNg
